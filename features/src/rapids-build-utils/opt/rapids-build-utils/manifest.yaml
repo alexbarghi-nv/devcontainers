@@ -38,11 +38,11 @@ repos:
     - name: ucxx
       sub_dir: python/ucxx
       depends: [ucxx]
-      args: {cmake: -DFIND_UCXX_CPP=ON, install: *rapids_build_backend_args}
+      args: {cmake: -DFIND_UCXX_CPP=ON -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'", install: *rapids_build_backend_args}
     - name: distributed-ucxx
       sub_dir: python/distributed-ucxx
       depends: [ucxx]
-      args: {cmake: -DFIND_UCXX_CPP=ON, install: *rapids_build_backend_args}
+      args: {cmake: -DFIND_UCXX_CPP=ON -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'", install: *rapids_build_backend_args}
 
 - name: kvikio
   path: kvikio
@@ -58,7 +58,7 @@ repos:
     - name: kvikio
       sub_dir: python/kvikio
       depends: [kvikio]
-      args: {install: *rapids_build_backend_args}
+      args: {install: *rapids_build_backend_args, cmake: -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'"}
 
 - name: cudf
   path: cudf
