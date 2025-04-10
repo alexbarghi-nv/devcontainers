@@ -35,14 +35,15 @@ repos:
       depends: [rmm]
       args: {cmake: -DUCXX_ENABLE_RMM=ON}
   python:
+      # ucxx explicitly uses functions not in the limited API, so not attempting to enable limited API builds here for now
     - name: ucxx
       sub_dir: python/ucxx
       depends: [ucxx]
-      args: {cmake: -DFIND_UCXX_CPP=ON -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'", install: *rapids_build_backend_args}
+      args: {cmake: -DFIND_UCXX_CPP=ON, install: *rapids_build_backend_args}
     - name: distributed-ucxx
       sub_dir: python/distributed-ucxx
       depends: [ucxx]
-      args: {cmake: -DFIND_UCXX_CPP=ON -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'", install: *rapids_build_backend_args}
+      args: {cmake: -DFIND_UCXX_CPP=ON, install: *rapids_build_backend_args}
 
 - name: kvikio
   path: kvikio
