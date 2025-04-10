@@ -56,10 +56,12 @@ repos:
       sub_dir: python/libkvikio
       depends: [kvikio]
       args: {install: *rapids_build_backend_args}
+      # Temporarily disabling limited API compilation until https://github.com/rapidsai/kvikio/pull/692 is merged
     - name: kvikio
       sub_dir: python/kvikio
       depends: [kvikio]
-      args: {install: *rapids_build_backend_args, cmake: -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'"}
+      args: {install: *rapids_build_backend_args}
+      #args: {install: *rapids_build_backend_args, cmake: -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'"}
 
 - name: cudf
   path: cudf
